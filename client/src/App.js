@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { saveAs } from 'file-saver';
 
-import './App.css';
-
 class App extends Component {
   state = {
     nom: 'Benoit',
@@ -17,53 +15,90 @@ class App extends Component {
 
   handleChange = ({ target: { value, name }}) => this.setState({ [name]: value })
 
-  createAndDownloadPdf = () => {
+  createAndDownloadPdf = (e) => {
+    e.preventDefault();
     axios.post('/create-pdf', this.state)
       .then(() => axios.get('fetch-pdf', { responseType: 'blob' }))
       .then((res) => {
         const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
 
-        saveAs(pdfBlob, 'newPdf.pdf');
+        saveAs(pdfBlob, 'Attestation-deplacement.pdf');
       })
+      alert("L'attestation sera disponible dans votre dossier 'téléchargements' dans quelques secondes")
   }
 
   render() {
     return (
-      <div className="App">
-        <h1> Formulaire Attestation de déplacement</h1>
+        <div className="App container">
 
-        <input type="text" placeholder="Nom" name="nom" onChange={this.handleChange}/>
-        <br/>
-        <input type="text" placeholder="Prénom" name="prenom" onChange={this.handleChange}/>
-        <br/>
-          <input type="text" placeholder="date de naissance" name="dateNaissance" onChange={this.handleChange} />
-        <br/>
-        <input type="text" placeholder=" Numéro et rue" name="rue" onChange={this.handleChange}/>
-        <br/>
-        <input type="text" placeholder="Ville" name="ville" onChange={this.handleChange}/>
-        <br/>
-        <input type="text" placeholder="Code Postal" name="codePostal" onChange={this.handleChange}/>
-        <br/>
+            <form>
+                <h1 className="h1 pb-3 pt-5 font-weight-normal"> Formulaire d'attestation de déplacement</h1>
+                <div className="form-group">
+                    <input type="text" className="form-control" placeholder="Nom" name="nom"
+                           onChange={this.handleChange}/>
+                </div>
+                <div className="form-group">
+                    <input type="text" className="form-control " placeholder="Prénom" name="prenom"
+                           onChange={this.handleChange}/>
+                </div>
+                <div className="form-group">
+                    <input type="text" className="form-control" placeholder="date de naissance" name="dateNaissance"
+                           onChange={this.handleChange}/>
+                </div>
+                <div className="form-group">
+                    <input type="text" className="form-control" placeholder=" Numéro et rue" name="rue"
+                           onChange={this.handleChange}/>
+                </div>
+                <div className="form-group">
+                    <input type="text" className="form-control" placeholder="Ville" name="ville"
+                           onChange={this.handleChange}/>
+                </div>
+                <div className="form-group">
+                    <input type="text" className="form-control" placeholder="Code Postal" name="codePostal"
+                           onChange={this.handleChange}/>
+                </div>
 
-          <h2>Motif de déplacement</h2>
-          <input type="radio" name="motifDeplacement" onChange={this.handleChange} value="Déplacements entre le domicile et le lieu d’exercice de l’activité professionnelle, lorsqu’ils sont indispensables à l’exercice d’activités ne pouvant être organisées sous forme de télétravail (sur justificatif permanent) ou déplacements professionnels ne pouvant être différés."/>
-          <label>Trajet travail</label>
+                <h2 className="h2 pb-3 font-weight-normal" >Motif de déplacement</h2>
 
-          <input type="radio" name="motifDeplacement" onChange={this.handleChange} value="Déplacements pour effectuer des achats de première nécessité dans des établissements autorisés (liste sur gouvernement.fr)"/>
-          <label>Courses</label>
+                <div className="form-check">
+                    <input type="radio" className="form-check-input" name="motifDeplacement"
+                           onChange={this.handleChange}
+                           value="Déplacements entre le domicile et le lieu d’exercice de l’activité professionnelle, lorsqu’ils sont indispensables à l’exercice d’activités ne pouvant être organisées sous forme de télétravail (sur justificatif permanent) ou déplacements professionnels ne pouvant être différés."/>
+                    <label>Trajet travail</label>
+                </div>
 
-          <input type="radio"  name="motifDeplacement" onChange={this.handleChange} value="Déplacements pour motif de santé."/>
-          <label>Santé</label>
+                <div className="form-check">
+                    <input type="radio" className="form-check-input" name="motifDeplacement"
+                           onChange={this.handleChange}
+                           value="Déplacements pour effectuer des achats de première nécessité dans des établissements autorisés (liste sur gouvernement.fr)"/>
+                    <label>Courses</label>
+                </div>
 
-          <input type="radio"  name="motifDeplacement" onChange={this.handleChange} value="Déplacements pour motif familial impérieux, pour l’assistance aux personnes vulnérables ou la garde d’enfants."/>
-          <label>Familial</label>
+                <div className="form-check">
+                    <input type="radio" className="form-check-input" name="motifDeplacement"
+                           onChange={this.handleChange} value="Déplacements pour motif de santé."/>
+                    <label>Santé</label>
+                </div>
 
-          <input type="radio"  name="motifDeplacement" onChange={this.handleChange} value="Déplacements brefs, à proximité du domicile, liés à l’activité physique individuelle des personnes, à l’exclusion de toute pratique sportive collective, et aux besoins des animaux de compagnie."/>
-          <label>Sport/Chien</label>
-          <br/>
+                <div className="form-check">
+                    <input type="radio" className="form-check-input" name="motifDeplacement"
+                           onChange={this.handleChange}
+                           value="Déplacements pour motif familial impérieux, pour l’assistance aux personnes vulnérables ou la garde d’enfants."/>
+                    <label>Familial</label>
+                </div>
 
-           <button onClick={this.createAndDownloadPdf}>Télécharger Attestation (PDF)</button>
-      </div>
+                <div className="form-check">
+                    <input type="radio" className="form-check-input" name="motifDeplacement"
+                           onChange={this.handleChange}
+                           value="Déplacements brefs, à proximité du domicile, liés à l’activité physique individuelle des personnes, à l’exclusion de toute pratique sportive collective, et aux besoins des animaux de compagnie."/>
+                    <label>Sport/Chien</label>
+                </div>
+
+                <button className="btn btn-primary mb-5 mt-3" onClick={this.createAndDownloadPdf}>
+                    Télécharger votre attestation (PDF)
+                </button>
+            </form>
+        </div>
     );
   }
 }
