@@ -4,12 +4,12 @@ import { saveAs } from 'file-saver';
 
 class App extends Component {
   state = {
-    nom: 'Benoit',
-    prenom: 'Arthur',
-    dateNaissance: '07/01/1993',
-    rue: '8bd de Magnan',
-    ville: 'Nice',
-    codePostal: '06200',
+    nom: '',
+    prenom: '',
+    dateNaissance: '',
+    rue: '',
+    ville: '',
+    codePostal: '',
     motifDeplacement: ''
   };
 

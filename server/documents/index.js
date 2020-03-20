@@ -8,22 +8,48 @@ return `
           <title>PDF Attestation Covid-19</title>
           <style>
              #page {
-             max-width: 800px;
-             margin: auto;
-             padding: 30px;
-             border: 1px solid #eee;
-             box-shadow: 0 0 10px rgba(0, 0, 0, .15);
-             font-size: 10px;
-             line-height: 24px;
-             font-family: 'Helvetica Neue', 'Helvetica',
-             color: #555;
-             },
+	             max-width: 600px;
+	             margin: auto;
+	             padding: 45px;
+	             font-size: 12px;
+	             line-height: 24px;
+	             font-family: Arial;
+             }
              #header {
-             text-align: center;
-             },
+				text-align: center;
+				padding: auto;
+
+             }
              h1 {
-             font-family: 'distressed';
-             font-size: 15px;
+             padding-top: 20px;
+             font-size: 16px;
+             color: black;
+             }
+
+             #personal {
+             	padding-top: 30px;
+             }
+
+             #motivation {
+             	padding-top: 10px;
+             }
+
+             #italic {
+             	margin-top: 50px;
+             	margin-bottom: 50px;
+             	font-style: italic;
+             }
+
+             #footer {
+             	padding-top: 10px;
+             	text-align: right;
+             }
+
+             #signature {
+             	font-family: "Times New Roman";
+             	font-style: italic;
+             	font-size: 16px;
+
              }
 
           </style>
@@ -42,11 +68,10 @@ return `
             </div>
             <div id="motivation">
                 <p>Certifie que mon déplacement est lié au motif suivant (cocher la case) autorisé par l’article 1er du décret du 16 mars 2020 portant réglementation des déplacements dans le cadre de la lutte contre la propagation du virus Covid-19 :</p>
-                <br/>
-                <p>${motifDeplacement}</p>
+                <p id="italic">"${motifDeplacement}"</p>
             </div>
             <div id="footer">
-                <p> Fait à ${ville}, le XXX</p>
+                <p> Fait à ${ville}, le ${`${today.getDate()}. ${today.getMonth() + 1}. ${today.getFullYear()}.`}</p>
                 <p> Signature</p>
                 <p id="signature"> ${nom} ${prenom}</p>
             </div>
