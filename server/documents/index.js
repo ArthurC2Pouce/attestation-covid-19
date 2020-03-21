@@ -67,7 +67,7 @@ return `
                 <p>Demeurant : ${rue} ${ville} ${codePostal} </p>
             </div>
             <div id="motivation">
-                <p>Certifie que mon déplacement est lié au motif suivant (cocher la case) autorisé par l’article 1er du décret du 16 mars 2020 portant réglementation des déplacements dans le cadre de la lutte contre la propagation du virus Covid-19 :</p>
+                <p>Certifie que mon déplacement est lié au motif suivant autorisé par l’article 1er du décret du 16 mars 2020 portant réglementation des déplacements dans le cadre de la lutte contre la propagation du virus Covid-19 :</p>
                 <p id="italic">"${motifDeplacement}"</p>
             </div>
             <div id="footer">
